@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>휴대폰광장 — 군산 No.1 휴대폰 전문점</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #070d1a;
+      --bg2: #0b1428;
+      --panel: #0f1e3a;
+      --blue: #3b82f6;
+      --blue-light: #93c5fd;
+      --text: #e2eeff;
+      --muted: #64748b;
+      --border: rgba(59,130,246,0.18);
+    }
+
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif; background: var(--bg); color: var(--text); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      text-align: center; padding: 60px 24px;
+      background: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(37,99,235,0.18) 0%, transparent 70%), var(--bg);
+      position: relative;
+    }
+
+    .logo-badge {
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(59,130,246,0.12);
+      border: 1px solid var(--border);
+      border-radius: 50px; padding: 8px 20px;
+      margin-bottom: 32px; font-size: 13px; color: var(--blue-light);
+      letter-spacing: 0.06em;
+    }
+
+    .logo-badge span { font-size: 18px; }
+
+    .hero h1 {
+      font-size: clamp(48px, 10vw, 88px);
+      font-weight: 900; line-height: 1.05;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #fff 0%, #93c5fd 60%, #60a5fa 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: 8px;
+    }
+
+    .hero-sub {
+      font-size: clamp(16px, 3vw, 22px);
+      color: var(--blue-light); font-weight: 600;
+      margin-bottom: 20px; letter-spacing: 0.04em;
+    }
+
+    .hero p {
+      font-size: clamp(15px, 2.5vw, 18px);
+      color: var(--muted); max-width: 520px;
+      line-height: 1.8; margin-bottom: 48px;
+    }
+
+    /* 핵심 수치 */
+    .stats {
+      display: flex; gap: 40px; margin-bottom: 48px;
+      flex-wrap: wrap; justify-content: center;
+    }
+
+    .stat { text-align: center; }
+    .stat-num {
+      font-size: clamp(32px, 6vw, 52px);
+      font-weight: 900; color: #fff;
+      background: linear-gradient(135deg, #fff, var(--blue-light));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .stat-num span { font-size: 0.5em; vertical-align: super; }
+    .stat-label { font-size: 13px; color: var(--muted); margin-top: 4px; letter-spacing: 0.04em; }
+
+    .divider { width: 1px; height: 60px; background: var(--border); align-self: center; }
+
+    .btn-group { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-bottom: 56px; }
+
+    .btn {
+      padding: 15px 34px; border-radius: 14px;
+      font-size: 16px; font-weight: 700;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-primary { background: var(--blue); color: #fff; box-shadow: 0 4px 24px rgba(59,130,246,0.35); }
+    .btn-primary:hover { background: #2563eb; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(59,130,246,0.5); }
+    .btn-outline { background: transparent; color: var(--text); border: 1px solid rgba(255,255,255,0.2); }
+    .btn-outline:hover { background: rgba(255,255,255,0.07); transform: translateY(-2px); }
+
+    /* 통신사 */
+    .carriers {
+      display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
+    }
+    .carrier {
+      padding: 7px 18px; border-radius: 8px;
+      font-size: 13px; font-weight: 700; letter-spacing: 0.04em;
+    }
+    .sk { background: rgba(255,45,85,0.12); color: #ff7eb3; border: 1px solid rgba(255,45,85,0.25); }
+    .kt { background: rgba(255,120,80,0.12); color: #ffab87; border: 1px solid rgba(255,120,80,0.25); }
+    .lg { background: rgba(168,85,247,0.12); color: #c084fc; border: 1px solid rgba(168,85,247,0.25); }
+
+    /* ── SECTION 공통 ── */
+    section { padding: 100px 24px; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label { font-size: 12px; font-weight: 700; color: var(--blue); letter-spacing: 0.12em; text-transform: uppercase; text-align: center; margin-bottom: 12px; }
+    .section-title { font-size: clamp(24px, 4vw, 38px); font-weight: 800; text-align: center; margin-bottom: 12px; }
+    .section-desc { color: var(--muted); text-align: center; font-size: 16px; line-height: 1.7; margin-bottom: 56px; }
+
+    /* ── 강점 카드 ── */
+    .strengths { background: var(--bg2); }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+    .card {
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: 20px; padding: 32px 28px;
+      transition: all 0.25s;
+    }
+    .card:hover { border-color: rgba(59,130,246,0.45); transform: translateY(-5px); box-shadow: 0 12px 40px rgba(59,130,246,0.12); }
+    .card-icon { font-size: 36px; margin-bottom: 18px; }
+    .card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+    .card p { color: var(--muted); font-size: 14px; line-height: 1.8; }
+    .card .tag { display: inline-block; margin-top: 14px; font-size: 12px; font-weight: 700; color: var(--blue-light); background: rgba(59,130,246,0.12); padding: 4px 10px; border-radius: 6px; }
+
+    /* ── 지점 ── */
+    .branches { background: var(--bg); }
+    .branch-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+    .branch-card {
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: 18px; padding: 28px 24px; text-align: center;
+      transition: all 0.2s;
+    }
+    .branch-card:hover { border-color: rgba(59,130,246,0.4); transform: translateY(-3px); }
+    .branch-num {
+      width: 40px; height: 40px; border-radius: 12px;
+      background: rgba(59,130,246,0.15); border: 1px solid var(--border);
+      font-size: 16px; font-weight: 800; color: var(--blue-light);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .branch-card h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
+    .branch-card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* ── 상담 프로세스 ── */
+    .process { background: var(--bg2); }
+    .steps { display: flex; flex-direction: column; gap: 0; max-width: 680px; margin: 0 auto; position: relative; }
+    .steps::before {
+      content: ''; position: absolute; left: 23px; top: 0; bottom: 0;
+      width: 2px; background: linear-gradient(to bottom, var(--blue), transparent);
+    }
+    .step { display: flex; gap: 24px; padding: 0 0 40px 0; }
+    .step:last-child { padding-bottom: 0; }
+    .step-num {
+      width: 48px; height: 48px; border-radius: 50%; flex-shrink: 0;
+      background: var(--blue); font-size: 18px; font-weight: 900; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; z-index: 1; box-shadow: 0 0 0 4px var(--bg2);
+    }
+    .step-body { padding-top: 8px; }
+    .step-body h3 { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
+    .step-body p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+    /* ── CTA ── */
+    .cta {
+      background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(37,99,235,0.2) 0%, transparent 70%), var(--bg);
+      text-align: center;
+    }
+    .cta h2 { font-size: clamp(28px, 5vw, 48px); font-weight: 900; margin-bottom: 16px; }
+    .cta p { color: var(--muted); font-size: 17px; margin-bottom: 40px; }
+    .contact-box {
+      display: inline-flex; align-items: center; gap: 16px;
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: 20px; padding: 24px 40px; margin-bottom: 40px;
+      flex-wrap: wrap; justify-content: center;
+    }
+    .phone-num { font-size: clamp(28px, 5vw, 44px); font-weight: 900; color: #fff; letter-spacing: 0.02em; }
+    .hours-badge { background: rgba(59,130,246,0.15); border: 1px solid var(--border); border-radius: 10px; padding: 10px 16px; }
+    .hours-badge p { font-size: 12px; color: var(--muted); margin-bottom: 3px; }
+    .hours-badge strong { font-size: 14px; color: var(--blue-light); }
+
+    /* ── footer ── */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 32px 24px; text-align: center;
+      color: var(--muted); font-size: 13px; line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="logo-badge"><span>📱</span> 군산 No.1 휴대폰 전문점</div>
+    <h1>휴대폰광장</h1>
+    <div class="hero-sub">SK · KT · LG U+ 3사 공식 판매점</div>
+    <p>10년 이상 베테랑 상담설계사가 직접 상담합니다.<br>복잡한 요금제·지원금, 가장 유리한 조건으로 개통해드립니다.</p>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">10<span>년+</span></div>
+        <div class="stat-label">업력</div>
+      </div>
+      <div class="divider"></div>
+      <div class="stat">
+        <div class="stat-num">200<span>건+</span></div>
+        <div class="stat-label">월 개통 처리</div>
+      </div>
+      <div class="divider"></div>
+      <div class="stat">
+        <div class="stat-num">4</div>
+        <div class="stat-label">운영 지점</div>
+      </div>
+    </div>
+
+    <div class="btn-group">
+      <a class="btn btn-primary" href="tel:01071125382">📞 010-7112-5382</a>
+      <a class="btn btn-outline" href="#branches">지점 찾기 →</a>
+    </div>
+
+    <div class="carriers">
+      <span class="carrier sk">SK텔레콤</span>
+      <span class="carrier kt">KT</span>
+      <span class="carrier lg">LG U+</span>
+    </div>
+  </section>
+
+  <!-- 강점 -->
+  <section class="strengths">
+    <div class="container">
+      <p class="section-label">Why Us</p>
+      <h2 class="section-title">왜 휴대폰광장인가요?</h2>
+      <p class="section-desc">
+        수십 곳의 판매점 중 휴대폰광장을 선택해야 하는 이유,<br>
+        직접 확인해보세요.
+      </p>
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon">🧑‍💼</div>
+          <h3>10년+ 베테랑 상담</h3>
+          <p>신입 직원이 아닌, 10년 이상 경력의 전문 상담설계사가 직접 응대합니다. 복잡한 약정 구조도 쉽게 설명해드립니다.</p>
+          <span class="tag">전문 설계사 상주</span>
+        </div>
+        <div class="card">
+          <div class="card-icon">💰</div>
+          <h3>최저가 보장</h3>
+          <p>공시지원금, 선택약정, 추가지원금까지 3사를 동시 비교해 가장 유리한 조건을 찾아드립니다. 숨겨진 비용 없이 투명하게 안내합니다.</p>
+          <span class="tag">3사 동시 비교</span>
+        </div>
+        <div class="card">
+          <div class="card-icon">⚡</div>
+          <h3>월 200건+ 처리 역량</h3>
+          <p>군산 지역 최다 개통 실적. 번호이동·기기변경·신규가입 모두 당일 신속하게 처리합니다. 대기 시간 최소화.</p>
+          <span class="tag">당일 개통 가능</span>
+        </div>
+        <div class="card">
+          <div class="card-icon">🛡️</div>
+          <h3>개통 후 사후관리</h3>
+          <p>요금제 변경, 부가서비스 해지, 기기 이상 발생 시 언제든 연락주세요. 개통 후에도 끝까지 책임집니다.</p>
+          <span class="tag">AS 완벽 지원</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 지점 -->
+  <section class="branches" id="branches">
+    <div class="container">
+      <p class="section-label">Branches</p>
+      <h2 class="section-title">4개 지점 운영 중</h2>
+      <p class="section-desc">군산 전역에 위치한 휴대폰광장 지점에서 편리하게 방문하세요.</p>
+      <div class="branch-grid">
+        <div class="branch-card">
+          <div class="branch-num">1</div>
+          <h3>미장점</h3>
+          <p>군산시 공단대로 131</p>
+        </div>
+        <div class="branch-card">
+          <div class="branch-num">2</div>
+          <h3>서천점</h3>
+          <p>서천군 서천읍 서천로 182</p>
+        </div>
+        <div class="branch-card">
+          <div class="branch-num">3</div>
+          <h3>미룡점</h3>
+          <p>군산시 미제2길 19</p>
+        </div>
+        <div class="branch-card">
+          <div class="branch-num">4</div>
+          <h3>나운점</h3>
+          <p>군산시 문화로 47</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 프로세스 -->
+  <section class="process">
+    <div class="container">
+      <p class="section-label">Process</p>
+      <h2 class="section-title">개통 상담 프로세스</h2>
+      <p class="section-desc">처음부터 끝까지 전문가가 안내합니다.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h3>현재 요금제·기기 분석</h3>
+            <p>지금 쓰고 있는 요금제와 기기를 확인하고, 위약금·잔여 할부금을 정확하게 계산해드립니다.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h3>3사 조건 비교</h3>
+            <p>SK·KT·LG 공시지원금, 선택약정, 추가 혜택을 한눈에 비교해 가장 유리한 통신사·요금제를 추천합니다.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h3>개통 진행</h3>
+            <p>번호이동·기기변경·신규가입 중 최적의 방법을 선택해 빠르게 개통합니다. 평균 소요 시간 30분 이내.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <h3>개통 후 확인 및 사후관리</h3>
+            <p>개통 완료 후 요금제·부가서비스를 최종 확인하고, 이후 문의사항도 언제든 도와드립니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="container">
+      <h2>지금 바로 문의하세요</h2>
+      <p>방문 전 전화 주시면 대기 없이 바로 상담 가능합니다.</p>
+      <div class="contact-box">
+        <a href="tel:01071125382" style="text-decoration:none;">
+          <div class="phone-num">010-7112-5382</div>
+        </a>
+        <div class="hours-badge">
+          <p>영업시간</p>
+          <strong>월 – 토 · 10:00 ~ 19:00</strong>
+        </div>
+      </div>
+      <br>
+      <a class="btn btn-primary" href="tel:01071125382" style="font-size:18px; padding: 18px 48px;">📞 전화 상담하기</a>
+    </div>
+  </section>
+
+  <footer>
+    <strong>휴대폰광장</strong> · 미장점 · 서천점 · 미룡점 · 나운점<br>
+    대표번호 010-7112-5382 · 영업시간 월~토 10:00–19:00<br><br>
+    © 2026 휴대폰광장. All rights reserved.
+  </footer>
+
+</body>
+</html>
